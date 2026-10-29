@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Entrepreneur Website — profil pendiri, cerita usaha, katalog produk, portofolio, dan perjalanan bisnis.">
+  <meta name="theme-color" content="#17243a">
+  <title>My Entrepreneur Space — Personal Entrepreneur Website</title>
+  <style>
+    :root{
+      --navy:#17243a;--navy-2:#223652;--ivory:#f7f4ee;--paper:#fffdf9;
+      --ink:#222a35;--muted:#6e7784;--line:#e5e2db;--accent:#c79b62;
+      --green:#2e6d58;--red:#a84444;--shadow:0 12px 36px rgba(23,36,58,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ivory);color:var(--ink);font:15px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body.dark{--ivory:#111821;--paper:#192330;--ink:#edf0f4;--muted:#a8b0bd;--line:#303c4a;--navy:#0d1520;--navy-2:#1b293a;--shadow:0 12px 36px rgba(0,0,0,.22)}
+    img{max-width:100%;display:block}button,input,textarea,select{font:inherit}button,a{transition:.2s ease}button{cursor:pointer}
+    a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #d6ad77;outline-offset:2px}
+    .container{width:min(1160px,calc(100% - 40px));margin:auto}.muted{color:var(--muted)}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.74rem;font-weight:800;color:var(--accent)}
+    h1,h2,h3,p{margin-top:0}h1,h2,h3{line-height:1.15;letter-spacing:-.035em}h1{font-size:clamp(2.6rem,6vw,5rem);max-width:760px;margin-bottom:20px}h2{font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:14px}h3{font-size:1.18rem;margin-bottom:8px}
+    .section{padding:84px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.section-head p{max-width:520px;margin-bottom:0;color:var(--muted)}
+    .btn{border:1px solid transparent;border-radius:999px;padding:12px 19px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:750;background:var(--navy);color:white}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn.secondary{background:transparent;color:var(--ink);border-color:var(--line)}.btn.gold{background:var(--accent);color:#201a13}.btn.small{padding:8px 13px;font-size:.85rem}.btn.danger{background:var(--red)}.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+    .topbar{background:var(--navy);color:#f9f6ef;font-size:.82rem;padding:8px 0}.topbar .container{display:flex;justify-content:space-between;gap:12px}
+    header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:-.03em}.brand-mark{height:40px;width:40px;border-radius:13px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:Georgia,serif;font-size:1.2rem}
+    .nav-links{display:flex;align-items:center;gap:22px;font-size:.9rem;font-weight:650}.nav-links a:hover{color:var(--accent)}.nav-actions{display:flex;gap:8px;align-items:center}.icon-btn{height:40px;width:40px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+    .menu-toggle{display:none}.hero{padding:76px 0 84px;background:radial-gradient(circle at 88% 12%,rgba(199,155,98,.16),transparent 28%),var(--paper);overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}.hero p{font-size:1.08rem;max-width:590px;color:var(--muted)}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 30px}
+    .hero-meta{display:flex;gap:24px;flex-wrap:wrap;color:var(--muted);font-size:.88rem}.hero-meta strong{display:block;color:var(--ink);font-size:1rem}
+    .hero-art{min-height:440px;position:relative;border-radius:30px;background:linear-gradient(145deg,#d9c4a6,#f3e9d9 48%,#aebbb0);overflow:hidden;box-shadow:var(--shadow);display:flex;align-items:end;padding:28px}
+    .hero-art:before{content:"";position:absolute;width:290px;height:360px;left:50%;top:30px;transform:translateX(-50%);border-radius:150px 150px 35px 35px;background:linear-gradient(160deg,#f8f2e8,#c4a47a);box-shadow:inset -20px -15px 40px #92745144}
+    .hero-art:after{content:"ME";position:absolute;right:20px;top:12px;font-family:Georgia,serif;font-size:6rem;font-weight:900;color:#fff8;letter-spacing:-.1em}
+    .portrait-placeholder{position:absolute;z-index:1;left:50%;top:84px;transform:translateX(-50%);width:180px;height:225px;border-radius:100px 100px 22px 22px;background:linear-gradient(160deg,#24364c,#17243a);display:grid;place-items:center;color:#f7e8d0;font-family:Georgia,serif;font-size:4rem;border:8px solid #f5e8d4;box-shadow:0 15px 30px #17243a30}
+    .hero-card{position:relative;z-index:2;background:var(--paper);padding:20px 22px;border-radius:17px;max-width:270px;box-shadow:var(--shadow)}.hero-card small{color:var(--muted)}.hero-card strong{display:block;font-size:1.08rem}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-26px;position:relative;z-index:3}.stat{background:var(--paper);border:1px solid var(--line);padding:23px;border-radius:16px;box-shadow:var(--shadow)}.stat strong{display:block;font-size:1.8rem;letter-spacing:-.04em}.stat span{font-size:.85rem;color:var(--muted)}
+    .about-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:60px;align-items:start}.about-note{background:var(--navy);color:#fff;padding:30px;border-radius:var(--radius)}.about-note p{color:#d7dce4}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.chip{font-size:.8rem;padding:7px 11px;border:1px solid var(--line);border-radius:999px}.about-note .chip{border-color:#ffffff40}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}.card-body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}.card-body p{color:var(--muted);font-size:.92rem;margin-bottom:0}.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+    .visual{height:205px;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#e9dcc9,#c6d0c5)}.visual .visual-symbol{font:5rem Georgia,serif;color:#17243a55}.visual span{position:absolute;left:15px;bottom:14px;background:#fffdf9d9;color:#17243a;padding:6px 10px;border-radius:999px;font-size:.75rem;font-weight:800}
+    .visual.v2{background:linear-gradient(135deg,#d9d4e8,#f1e5d7)}.visual.v3{background:linear-gradient(135deg,#c7d8d1,#eee6d8)}.visual.v4{background:linear-gradient(135deg,#e4c6b8,#f4e9d9)}.visual.v5{background:linear-gradient(135deg,#c6d1df,#e7dfd1)}.visual.v6{background:linear-gradient(135deg,#e3d8b9,#c6d3c4)}
+    .price{font-weight:850;font-size:1.15rem}.pill{font-size:.73rem;font-weight:800;border-radius:999px;padding:5px 9px;background:#e8f2eb;color:#276346;display:inline-flex;width:max-content}.pill.off{background:#f7e8e6;color:#973f3b}.card-top{display:flex;justify-content:space-between;align-items:start;gap:10px}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}.field{border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:var(--paper);color:var(--ink);min-width:0;width:100%}.toolbar .field{width:auto;min-width:190px}.field-label{font-size:.86rem;font-weight:750;display:block;margin-bottom:6px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-group.full{grid-column:1/-1}textarea.field{min-height:125px;resize:vertical}
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.story-panel{padding:30px;border-radius:var(--radius);background:var(--paper);border:1px solid var(--line)}.timeline{border-left:2px solid var(--accent);margin:25px 0 0 8px;padding-left:24px}.timeline-item{position:relative;margin-bottom:25px}.timeline-item:before{content:"";position:absolute;left:-31px;top:5px;width:12px;height:12px;background:var(--accent);border:3px solid var(--paper);border-radius:50%}.timeline-item small{color:var(--accent);font-weight:850}
+    .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px}.contact-card{background:var(--navy);color:#fff;border-radius:var(--radius);padding:30px}.contact-card p{color:#d7dce4}.contact-list{display:grid;gap:13px;margin-top:25px}.contact-list a{word-break:break-word}.contact-form{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+    footer{background:var(--navy);color:#f7f4ee;padding:38px 0}.footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}.footer-row p{color:#bdc5d1;margin:5px 0 0}
+    .hidden{display:none!important}.toast-wrap{position:fixed;right:18px;bottom:18px;z-index:100;display:grid;gap:9px}.toast{background:var(--navy);color:#fff;padding:13px 17px;border-radius:12px;box-shadow:var(--shadow);max-width:min(360px,calc(100vw - 36px));animation:slideIn .2s ease}.toast.error{background:#8e3737}.toast.success{background:#24664d}@keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .modal-backdrop{position:fixed;inset:0;background:#101722a8;z-index:80;display:grid;place-items:center;padding:18px;overflow:auto}.modal{width:min(680px,100%);max-height:92vh;overflow:auto;background:var(--paper);color:var(--ink);border-radius:20px;padding:25px;box-shadow:0 25px 80px #0004}.modal-head{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:18px}.modal-head h2{font-size:1.5rem;margin:0}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
+    .admin-layout{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:start}.admin-sidebar{background:var(--navy);color:white;border-radius:var(--radius);padding:18px;position:sticky;top:95px}.admin-sidebar button{display:block;width:100%;text-align:left;padding:11px 12px;background:transparent;border:0;border-radius:10px;color:#e9edf3;margin:3px 0}.admin-sidebar button.active,.admin-sidebar button:hover{background:#ffffff18;color:#fff}.admin-main{min-width:0}.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:22px}.admin-stat{background:var(--paper);border:1px solid var(--line);padding:17px;border-radius:14px}.admin-stat strong{font-size:1.7rem;display:block}.admin-stat span{color:var(--muted);font-size:.83rem}.admin-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:18px}.admin-panel-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:15px}.admin-panel-head h3{margin:0}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}td .btn{margin:2px}
+    .notice{padding:13px 15px;border-radius:12px;background:#fff4df;color:#73531d;font-size:.88rem;margin-bottom:18px}.dark .notice{background:#3b3020;color:#f1d49b}.empty{text-align:center;padding:35px 15px;color:var(--muted)}.auth-wrap{max-width:500px;margin:0 auto}.auth-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}.auth-box h2{font-size:2rem}.auth-toggle{text-align:center;margin-top:15px}.text-button{background:none;border:0;color:var(--accent);font-weight:800;padding:3px}.inline-check{display:flex;align-items:start;gap:9px;font-size:.85rem;color:var(--muted)}.inline-check input{margin-top:5px}.admin-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px}.mobile-only{display:none}
+    @media(max-width:900px){.nav-links{gap:12px}.hero-grid{gap:28px}.cards{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.about-grid,.contact-grid{gap:25px}.admin-layout{grid-template-columns:1fr}.admin-sidebar{position:static;display:flex;overflow:auto;gap:5px}.admin-sidebar button{white-space:nowrap;width:auto}.admin-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:680px){.container{width:min(100% - 28px,1160px)}.topbar .container span:last-child{display:none}.nav{min-height:66px}.menu-toggle{display:inline-grid;place-items:center}.nav-links{display:none;position:absolute;top:66px;left:0;right:0;background:var(--paper);padding:18px 22px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}.nav-links.open{display:flex}.nav-links a{padding:7px 0}.nav-actions .hide-mobile{display:none}.hero{padding:48px 0 62px}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:360px}.portrait-placeholder{top:60px}.section{padding:60px 0}.section-head{display:block}.section-head p{margin-top:10px}.about-grid,.story-grid,.contact-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.stats{gap:9px}.stat{padding:16px}.stat strong{font-size:1.45rem}.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}.toolbar .field{width:100%}.footer-row{align-items:flex-start;flex-direction:column}.admin-grid{grid-template-columns:repeat(2,1fr)}.admin-panel{padding:16px}.admin-top{align-items:flex-start;flex-direction:column}.hero-meta{gap:15px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container"><span>PERSONAL BRAND · CREATIVE BUSINESS · COLLABORATION</span><span id="topContact">Ruang untuk ide dan kolaborasi baru</span></div></div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Beranda"><span class="brand-mark" id="brandMark">M</span><span id="brandName">My Entrepreneur Space</span></a>
+      <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+        <a href="#about">Tentang</a><a href="#products">Produk</a><a href="#portfolio">Portofolio</a><a href="#journey">Perjalanan</a><a href="#journal">Insight</a><a href="#contact">Kontak</a>
+      </nav>
+      <div class="nav-actions"><button class="icon-btn" id="themeToggle" aria-label="Ganti tema" title="Ganti tema">◐</button><button class="btn small hide-mobile" id="navAdmin">Area Pemilik ↗</button><button class="icon-btn menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button></div>
+    </div>
+  </header>
+
+  <main id="publicApp">
+    <section class="hero" id="home"><div class="container hero-grid">
+      <div><div class="eyebrow" id="heroEyebrow">Entrepreneur · Creator · Lifelong Learner</div><h1 id="heroTitle">Ide yang bermakna. Karya yang punya cerita.</h1><p id="heroDescription">Saya membangun ruang untuk kreativitas, produk, dan kolaborasi. Kenali perjalanan saya, jelajahi karya, dan mari ciptakan sesuatu yang bernilai bersama.</p>
+        <div class="hero-actions"><a class="btn" href="#about">Kenali Saya <span>↗</span></a><a class="btn secondary" href="#products">Jelajahi Produk</a></div>
+        <div class="hero-meta"><div><strong id="heroField">Creative Business</strong><span>Bidang yang ditekuni</span></div><div><strong id="heroLocation">Indonesia</strong><span>Berbasis di</span></div></div>
+      </div>
+      <div class="hero-art" id="heroArt" aria-label="Visual personal branding"><div class="portrait-placeholder" id="heroInitials">ME</div><div class="hero-card"><small>HALO, SENANG BERTEMU DENGANMU</small><strong id="heroOwner">Founder & Creative Entrepreneur</strong><span class="muted" id="heroCardText">Membangun ide menjadi karya nyata.</span></div></div>
+    </div></section>
+    <div class="container"><div class="stats">
+      <div class="stat"><strong id="statProducts">0</strong><span>Produk aktif</span></div><div class="stat"><strong id="statProjects">0</strong><span>Proyek portofolio</span></div><div class="stat"><strong id="statMilestones">0</strong><span>Tonggak perjalanan</span></div><div class="stat"><strong id="statArticles">0</strong><span>Artikel insight</span></div>
+    </div></div>
+
+    <section class="section" id="about"><div class="container about-grid">
+      <div><div class="eyebrow">The person behind the brand</div><h2 id="aboutHeading">Tentang Saya</h2><div class="about-note"><p id="aboutQuote">“Saya percaya setiap ide punya peluang untuk tumbuh ketika dikerjakan dengan rasa ingin tahu, konsistensi, dan keberanian untuk belajar.”</p><div class="chips" id="skillChips"><span class="chip">Kreativitas</span><span class="chip">Strategi</span><span class="chip">Kolaborasi</span></div></div></div>
+      <div><h3 id="ownerName">Nama Pemilik</h3><p id="ownerBio">Saya adalah individu kreatif yang senang mengembangkan ide menjadi produk dan pengalaman yang bermanfaat. Website ini menjadi rumah digital untuk memperkenalkan diri, membagikan proses, serta membuka peluang kerja sama.</p><p id="ownerMore" class="muted">Saya terus belajar, bereksperimen, dan membangun karya secara bertahap. Setiap proyek adalah kesempatan untuk memahami kebutuhan, menguji ide, dan menciptakan nilai.</p><div class="chips" id="ownerFacts"><span class="chip">Entrepreneurship</span><span class="chip">Creative Projects</span><span class="chip">Learning by Doing</span></div><div style="margin-top:22px"><a class="btn secondary" href="#contact">Mari Terhubung ↗</a></div></div>
+    </div></section>
+
+    <section class="section" id="products" style="background:var(--paper)"><div class="container">
+      <div class="section-head"><div><div class="eyebrow">Curated collection</div><h2>Katalog Produk & Jasa</h2></div><p>Temukan produk, layanan, atau karya yang dikembangkan dengan perhatian pada detail dan pengalaman pengguna.</p></div>
+      <div class="toolbar"><input class="field" id="productSearch" type="search" placeholder="Cari produk atau jasa…" aria-label="Cari produk"><select class="field" id="productCategory" aria-label="Filter kategori"><option value="">Semua kategori</option></select><select class="field" id="productSort" aria-label="Urutkan produk"><option value="featured">Unggulan dahulu</option><option value="price-asc">Harga terendah</option><option value="price-desc">Harga tertinggi</option><option value="name">Nama A–Z</option></select></div>
+      <div class="cards" id="productGrid"></div><div class="empty hidden" id="productEmpty">Produk tidak ditemukan. Coba kata kunci atau kategori lain.</div>
+    </div></section>
+
+    <section class="section" id="portfolio"><div class="container">
+      <div class="section-head"><div><div class="eyebrow">Selected work</div><h2>Portofolio & Proyek</h2></div><p>Cuplikan karya, eksperimen, dan proyek yang mencerminkan proses berpikir serta kemampuan yang terus berkembang.</p></div>
+      <div class="toolbar"><input class="field" id="portfolioSearch" type="search" placeholder="Cari proyek…" aria-label="Cari portofolio"><select class="field" id="portfolioCategory" aria-label="Filter kategori portofolio"><option value="">Semua kategori</option></select></div>
+      <div class="cards" id="portfolioGrid"></div><div class="empty hidden" id="portfolioEmpty">Belum ada proyek yang sesuai.</div>
+    </div></section>
+
+    <section class="section" id="story" style="background:var(--paper)"><div class="container story-grid">
+      <div class="story-panel"><div class="eyebrow">Why it started</div><h2 id="storyTitle">Cerita di Balik Usaha</h2><p id="storyBody" class="muted">Sebuah usaha sering dimulai dari pertanyaan sederhana: apa yang bisa dibuat lebih baik, lebih bermakna, atau lebih dekat dengan kebutuhan orang lain? Bagian ini menceritakan alasan, proses, dan nilai yang menjadi dasar perjalanan brand.</p><h3>Nilai yang dipegang</h3><div class="chips" id="valuesChips"><span class="chip">Kejujuran</span><span class="chip">Kualitas</span><span class="chip">Terus bertumbuh</span></div></div>
+      <div class="story-panel" id="journey"><div class="eyebrow">Progress, not perfection</div><h2>Perjalanan Bisnis</h2><p class="muted">Setiap langkah menyimpan pelajaran. Berikut beberapa tonggak perjalanan yang dapat diperbarui melalui area pemilik.</p><div class="timeline" id="timeline"></div></div>
+    </div></section>
+
+    <section class="section" id="journal"><div class="container">
+      <div class="section-head"><div><div class="eyebrow">Notes & perspectives</div><h2>Insight & Catatan</h2></div><p>Artikel tentang proses kreatif, pengalaman usaha, pembelajaran, dan gagasan yang layak dibagikan.</p></div>
+      <div class="toolbar"><input class="field" id="articleSearch" type="search" placeholder="Cari artikel…" aria-label="Cari artikel"><select class="field" id="articleCategory" aria-label="Filter artikel"><option value="">Semua kategori</option></select></div>
+      <div class="cards" id="articleGrid"></div><div class="empty hidden" id="articleEmpty">Belum ada artikel yang sesuai.</div>
+    </div></section>
+
+    <section class="section" id="contact" style="background:var(--paper)"><div class="container contact-grid">
+      <div class="contact-card"><div class="eyebrow">Let's create together</div><h2>Terbuka untuk Kolaborasi</h2><p>Punya ide, ingin bertanya tentang produk, atau tertarik bekerja sama? Ceritakan kebutuhanmu melalui formulir di samping.</p><div class="contact-list"><div>✉ <a id="contactEmail" href="mailto:hello@example.com">hello@example.com</a> <span class="muted">(opsional)</span></div><div>☏ <a id="contactPhone" href="#">WhatsApp belum diatur</a></div><div>◎ <a id="contactInstagram" href="#" target="_blank" rel="noopener">Instagram belum diatur</a></div></div><p style="font-size:.8rem;margin-top:24px">Informasi kontak dapat diubah melalui Area Pemilik.</p></div>
+      <form class="contact-form" id="contactForm"><h3>Kirim Pesan / Permintaan Kerja Sama</h3><p class="muted">Email tidak wajib. Pada mode demo, pesan disimpan hanya di browser ini.</p><div class="form-grid">
+        <div class="form-group"><label class="field-label" for="msgName">Nama *</label><input class="field" id="msgName" name="name" required maxlength="100" placeholder="Nama kamu"></div>
+        <div class="form-group"><label class="field-label" for="msgPhone">Nomor WhatsApp (opsional)</label><input class="field" id="msgPhone" name="phone" maxlength="30" placeholder="08xxxxxxxxxx"></div>
+        <div class="form-group"><label class="field-label" for="msgEmail">Email (opsional)</label><input class="field" id="msgEmail" name="email" type="email" maxlength="150" placeholder="nama@email.com"></div>
+        <div class="form-group"><label class="field-label" for="msgType">Jenis kebutuhan *</label><select class="field" id="msgType" name="type" required><option value="">Pilih kebutuhan</option><option>Kolaborasi</option><option>Pemesanan produk</option><option>Proyek kreatif</option><option>Sponsorship</option><option>Konsultasi</option><option>Lainnya</option></select></div>
+        <div class="form-group full"><label class="field-label" for="msgOrg">Nama perusahaan / brand (opsional)</label><input class="field" id="msgOrg" name="organization" maxlength="150" placeholder="Nama organisasi atau brand"></div>
+        <div class="form-group full"><label class="field-label" for="msgBody">Pesan *</label><textarea class="field" id="msgBody" name="message" required maxlength="3000" placeholder="Ceritakan ide atau kebutuhanmu…"></textarea></div>
+        <div class="form-group full"><label class="inline-check"><input type="checkbox" required> Saya setuju informasi ini digunakan untuk menanggapi pesan saya.</label></div>
+        <div class="form-group full"><button class="btn" type="submit">Simpan Pesan ↗</button></div>
+      </div></form>
+    </div></section>
+  </main>
+
+  <main id="authApp" class="section hidden"><div class="container auth-wrap"><div class="auth-box" id="authBox"></div></div></main>
+  <main id="adminApp" class="section hidden"><div class="container">
+    <div class="admin-top"><div><div class="eyebrow">Private workspace · Demo lokal</div><h2 style="margin-bottom:5px">Area Pemilik</h2><p class="muted" style="margin:0">Kelola identitas, produk, karya, cerita, artikel, dan pesan masuk.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn secondary small" id="backPublic">← Lihat Website</button><button class="btn small" id="logoutBtn">Keluar</button></div></div>
+    <div class="notice"><strong>Mode demo lokal:</strong> data dan akun disimpan di browser ini. Ini bukan autentikasi aman untuk website publik. Jangan gunakan kata sandi penting. Untuk online, hubungkan backend autentikasi dan database.</div>
+    <div class="admin-layout"><aside class="admin-sidebar" id="adminSidebar"><button class="active" data-tab="overview">▦ Ringkasan</button><button data-tab="profile">◎ Identitas & Tampilan</button><button data-tab="products">◇ Produk & Jasa</button><button data-tab="portfolio">▤ Portofolio</button><button data-tab="journey">↗ Perjalanan Bisnis</button><button data-tab="articles">✎ Artikel</button><button data-tab="messages">✉ Pesan Masuk</button><button data-tab="settings">⚙ Pengaturan & Data</button></aside><div class="admin-main" id="adminContent"></div></div>
+  </div></main>
+
+  <footer><div class="container footer-row"><div><strong id="footerBrand">My Entrepreneur Space</strong><p id="footerLine">Personal brand, creative business, and meaningful collaboration.</p></div><div style="display:flex;gap:15px;flex-wrap:wrap"><a href="#about">Tentang</a><a href="#products">Produk</a><a href="#contact">Kontak</a><button class="text-button" id="footerAdmin">Area Pemilik</button></div></div><div class="container" style="margin-top:22px;color:#aeb8c6;font-size:.8rem">© <span id="yearNow"></span> <span id="copyrightBrand">My Entrepreneur Space</span>. Dibuat untuk bertumbuh.</div></footer>
+
+  <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+  <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-head"><h2 id="modalTitle">Detail</h2><button class="icon-btn" id="modalClose" aria-label="Tutup">×</button></div><div id="modalBody"></div><div class="modal-actions" id="modalActions"></div></div></div>
+
+<script>
+(() => {
+  "use strict";
+  const STORAGE_KEY = "mes_demo_data_v1";
+  const SESSION_KEY = "mes_demo_session_v1";
+  const THEME_KEY = "mes_theme_v1";
+  const $ = (sel, root=document) => root.querySelector(sel);
+  const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+  const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const uid = () => (crypto?.randomUUID ? crypto.randomUUID() : "id-" + Date.now() + "-" + Math.random().toString(16).slice(2));
+  const money = n => new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(Number(n)||0);
+  const dateLabel = d => { if(!d) return "Tanggal belum diatur"; const x=new Date(d+"T00:00:00"); return Number.isNaN(+x)?d:x.toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"}); };
+  const today = () => new Date().toISOString().slice(0,10);
+  const demoData = () => ({
+    profile:{siteName:"My Entrepreneur Space",brandName:"My Entrepreneur Space",ownerName:"Nama Pemilik",initials:"ME",tagline:"Ide yang bermakna. Karya yang punya cerita.",eyebrow:"Entrepreneur · Creator · Lifelong Learner",description:"Saya membangun ruang untuk kreativitas, produk, dan kolaborasi. Kenali perjalanan saya, jelajahi karya, dan mari ciptakan sesuatu yang bernilai bersama.",field:"Creative Business",location:"Indonesia",bio:"Saya adalah individu kreatif yang senang mengembangkan ide menjadi produk dan pengalaman yang bermanfaat. Website ini menjadi rumah digital untuk memperkenalkan diri, membagikan proses, serta membuka peluang kerja sama.",more:"Saya terus belajar, bereksperimen, dan membangun karya secara bertahap. Setiap proyek adalah kesempatan untuk memahami kebutuhan, menguji ide, dan menciptakan nilai.",quote:"Saya percaya setiap ide punya peluang untuk tumbuh ketika dikerjakan dengan rasa ingin tahu, konsistensi, dan keberanian untuk belajar.",skills:"Kreativitas,Strategi,Kolaborasi",facts:"Entrepreneurship,Creative Projects,Learning by Doing",values:"Kejujuran,Kualitas,Terus bertumbuh",storyTitle:"Cerita di Balik Usaha",story:"Sebuah usaha sering dimulai dari pertanyaan sederhana: apa yang bisa dibuat lebih baik, lebih bermakna, atau lebih dekat dengan kebutuhan orang lain? Bagian ini menceritakan alasan, proses, dan nilai yang menjadi dasar perjalanan brand.",email:"",phone:"",instagram:"",website:"",coverUrl:"",photoUrl:"",whatsappMessage:"Halo, saya tertarik untuk berdiskusi tentang produk atau kolaborasi.",currency:"IDR"},
+    products:[
+      {id:uid(),name:"Karya Handmade",category:"Produk Kreatif",price:175000,description:"Produk kreatif yang dibuat dengan perhatian pada detail. Ganti foto, deskripsi, dan harga sesuai produk asli.",status:"Tersedia",featured:true,image:"",label:"Pilihan Kreatif"},
+      {id:uid(),name:"Paket Desain Personal",category:"Jasa Kreatif",price:250000,description:"Layanan kreatif untuk membantu mengembangkan ide menjadi visual yang lebih terarah.",status:"Tersedia",featured:false,image:"",label:"Layanan"},
+      {id:uid(),name:"Konsultasi Ide Usaha",category:"Konsultasi",price:100000,description:"Sesi diskusi awal untuk merapikan ide, menentukan kebutuhan, dan memetakan langkah berikutnya.",status:"Tersedia",featured:false,image:"",label:"Sesi"}
+    ],
+    portfolio:[
+      {id:uid(),title:"Pengembangan Identitas Brand",category:"Branding",date:"2026-03-01",description:"Eksplorasi identitas visual, nilai brand, dan arah komunikasi untuk sebuah proyek kreatif.",role:"Konsep dan pengembangan",result:"Studi konsep untuk portofolio",image:"",link:""},
+      {id:uid(),title:"Proyek Produk Kreatif",category:"Produk",date:"2026-05-15",description:"Proses pengembangan produk dari riset ide, percobaan, sampai penentuan presentasi produk.",role:"Perencanaan dan eksekusi",result:"Dokumentasi proses pengembangan",image:"",link:""},
+      {id:uid(),title:"Kampanye Digital",category:"Digital",date:"2026-07-10",description:"Rancangan komunikasi digital untuk memperkenalkan sebuah produk kepada audiens yang sesuai.",role:"Konten dan strategi",result:"Contoh proyek latihan",image:"",link:""}
+    ],
+    journey:[
+      {id:uid(),date:"2025-10-01",title:"Ide Awal",description:"Mulai merangkum minat, masalah yang ingin dijawab, dan peluang karya."},
+      {id:uid(),date:"2026-02-01",title:"Eksplorasi dan Percobaan",description:"Mencoba pendekatan, mengumpulkan masukan, dan menyempurnakan konsep."},
+      {id:uid(),date:"2026-06-01",title:"Membangun Kehadiran Digital",description:"Menyusun identitas brand dan ruang digital untuk menampilkan karya."}
+    ],
+    articles:[
+      {id:uid(),title:"Memulai dari Ide Kecil",category:"Kewirausahaan",date:"2026-06-12",excerpt:"Mengapa ide sederhana layak diuji melalui langkah kecil dan terukur.",body:"Memulai usaha tidak selalu harus menunggu semua hal sempurna. Mulailah dengan memahami kebutuhan, menyusun asumsi, mencoba dalam skala kecil, lalu belajar dari umpan balik. Catat apa yang berhasil dan apa yang perlu diperbaiki.",status:"published",image:""},
+      {id:uid(),title:"Belajar dari Proses Kreatif",category:"Kreativitas",date:"2026-07-18",excerpt:"Proses kreatif membutuhkan ruang untuk bereksperimen dan mengevaluasi.",body:"Kreativitas bukan hanya tentang hasil akhir. Ia juga tumbuh dari proses mengamati, mencoba, menerima masukan, dan berani mengubah pendekatan. Dokumentasikan proses agar pembelajaran berikutnya lebih terarah.",status:"published",image:""}
+    ],
+    messages:[],settings:{}
+  });
+  let data = loadData();
+  let currentUser = sessionStorage.getItem(SESSION_KEY) || "";
+  let currentTab = "overview";
+  let authMode = "login";
+  let modalCleanup = null;
+
+  function loadData(){
+    try{
+      const raw=localStorage.getItem(STORAGE_KEY);
+      if(!raw){const initial=demoData();localStorage.setItem(STORAGE_KEY,JSON.stringify(initial));return initial;}
+      const parsed=JSON.parse(raw), base=demoData();
+      return {...base,...parsed,profile:{...base.profile,...(parsed.profile||{})},products:Array.isArray(parsed.products)?parsed.products:base.products,portfolio:Array.isArray(parsed.portfolio)?parsed.portfolio:base.portfolio,journey:Array.isArray(parsed.journey)?parsed.journey:base.journey,articles:Array.isArray(parsed.articles)?parsed.articles:base.articles,messages:Array.isArray(parsed.messages)?parsed.messages:[],settings:{...base.settings,...(parsed.settings||{})}};
+    }catch(e){console.error("Data lokal tidak dapat dibaca",e);return demoData();}
+  }
+  function saveData(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));return true;}catch(e){toast("Penyimpanan gagal. Data mungkin terlalu besar atau browser membatasi penyimpanan.","error");return false;}}
+  function toast(message,type=""){const el=document.createElement("div");el.className="toast "+type;el.textContent=message;$("#toastWrap").append(el);setTimeout(()=>el.remove(),4200);}
+  function setView(view){$("#publicApp").classList.toggle("hidden",view!=="public");$("#authApp").classList.toggle("hidden",view!=="auth");$("#adminApp").classList.toggle("hidden",view!=="admin");window.scrollTo({top:0,behavior:"smooth"});if(view==="auth")renderAuth();if(view==="admin")renderAdmin();if(view==="public")renderPublic();}
+  function showModal(title,body,actions=[]){if(modalCleanup){modalCleanup();modalCleanup=null;}$("#modalTitle").textContent=title;$("#modalBody").innerHTML=body;const wrap=$("#modalActions");wrap.replaceChildren();actions.forEach(a=>{const b=document.createElement("button");b.className="btn "+(a.secondary?"secondary":"");b.textContent=a.label;b.onclick=()=>a.onClick();wrap.append(b);});$("#modalBackdrop").classList.remove("hidden");}
+  function closeModal(){if(modalCleanup){modalCleanup();modalCleanup=null;}$("#modalBackdrop").classList.add("hidden");$("#modalBody").replaceChildren();$("#modalActions").replaceChildren();}
+  function safeExternal(url){try{const u=new URL(url);return ["http:","https:"].includes(u.protocol)?u.href:"#";}catch{return "#";}}
+  function linkFor(url){return safeExternal(url);}
+  function imageVisual(item,index=0){const cls=["","v2","v3","v4","v5","v6"][index%6];if(item.image&&/^(https?:\/\/|data:image\/)/i.test(item.image))return `<div class="visual"><img src="${esc(item.image)}" alt="${esc(item.name||item.title||"Gambar karya")}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.parentElement.innerHTML='<div class=&quot;visual-symbol&quot;>✦</div>'"></div>`;return `<div class="visual ${cls}"><div class="visual-symbol">${esc((item.name||item.title||"✦").trim().slice(0,1).toUpperCase())}</div><span>${esc(item.label||item.category||"Karya")}</span></div>`;}
+  function renderPublic(){
+    const p=data.profile;
+    const textMap={brandName:p.brandName||p.siteName,brandMark:(p.initials||p.brandName||"M").slice(0,2),heroTitle:p.tagline,heroEyebrow:p.eyebrow,heroDescription:p.description,heroField:p.field,heroLocation:p.location,heroInitials:p.initials,heroOwner:(p.ownerName||"Founder")+" · Entrepreneur",heroCardText:p.quote,aboutHeading:"Tentang "+(p.ownerName||"Saya"),ownerName:p.ownerName,ownerBio:p.bio,ownerMore:p.more,aboutQuote:"“"+p.quote+"”",storyTitle:p.storyTitle,storyBody:p.story,footerBrand:p.brandName,footerLine:p.field+" · Personal Brand · Creative Business",copyrightBrand:p.brandName,topContact:p.phone?"Terbuka untuk kolaborasi · "+p.phone:"Ruang untuk ide dan kolaborasi baru"};
+    Object.entries(textMap).forEach(([id,val])=>{const el=$("#"+id);if(el)el.textContent=val||"";});
+    document.title=(p.siteName||p.brandName)+" — Personal Entrepreneur Website";
+    $("#skillChips").innerHTML=chips(p.skills);$("#ownerFacts").innerHTML=chips(p.facts);$("#valuesChips").innerHTML=chips(p.values);
+    if(p.photoUrl&&/^https?:\/\//i.test(p.photoUrl)){ $("#heroArt").style.backgroundImage=`linear-gradient(0deg,rgba(23,36,58,.08),rgba(23,36,58,.08)),url("${p.photoUrl.replace(/["\\]/g,"")}")`;$("#heroArt").style.backgroundSize="cover";$("#heroArt").style.backgroundPosition="center";$("#heroInitials").style.display="none";}
+    else{$("#heroArt").style.backgroundImage="";$("#heroArt").style.backgroundSize="";$("#heroInitials").style.display="grid";}
+    $("#statProducts").textContent=data.products.filter(x=>x.status==="Tersedia").length;
+    $("#statProjects").textContent=data.portfolio.length;$("#statMilestones").textContent=data.journey.length;$("#statArticles").textContent=data.articles.filter(x=>x.status==="published").length;
+    $("#contactEmail").textContent=p.email||"Email belum diatur";$("#contactEmail").href=p.email?"mailto:"+p.email:"#";
+    $("#contactPhone").textContent=p.phone||"WhatsApp belum diatur";$("#contactPhone").href=p.phone?"https://wa.me/"+p.phone.replace(/\D/g,"")+"?text="+encodeURIComponent(p.whatsappMessage||"Halo, saya ingin berdiskusi."):"#";
+    $("#contactInstagram").textContent=p.instagram||"Instagram belum diatur";$("#contactInstagram").href=p.instagram?linkFor(p.instagram):"#";
+    $("#productCategory").innerHTML='<option value="">Semua kategori</option>'+unique(data.products.map(x=>x.category)).map(x=>`<option>${esc(x)}</option>`).join("");
+    $("#portfolioCategory").innerHTML='<option value="">Semua kategori</option>'+unique(data.portfolio.map(x=>x.category)).map(x=>`<option>${esc(x)}</option>`).join("");
+    $("#articleCategory").innerHTML='<option value="">Semua kategori</option>'+unique(data.articles.filter(x=>x.status==="published").map(x=>x.category)).map(x=>`<option>${esc(x)}</option>`).join("");
+    renderProducts();renderPortfolio();renderTimeline();renderArticles();
+  }
+  function chips(csv){return String(csv||"").split(",").map(x=>x.trim()).filter(Boolean).map(x=>`<span class="chip">${esc(x)}</span>`).join("");}
+  function unique(a){return [...new Set(a.filter(Boolean))].sort((x,y)=>x.localeCompare(y,"id"));}
+  function renderProducts(){
+    const q=$("#productSearch").value.toLowerCase(),cat=$("#productCategory").value,sort=$("#productSort").value;
+    let items=data.products.filter(x=>x.status==="Tersedia"&&(!cat||x.category===cat)&&(`${x.name} ${x.category} ${x.description}`.toLowerCase().includes(q)));
+    if(sort==="price-asc")items.sort((a,b)=>a.price-b.price);if(sort==="price-desc")items.sort((a,b)=>b.price-a.price);if(sort==="name")items.sort((a,b)=>a.name.localeCompare(b.name));if(sort==="featured")items.sort((a,b)=>Number(b.featured)-Number(a.featured));
+    $("#productGrid").innerHTML=items.map((x,i)=>`<article class="card">${imageVisual(x,i)}<div class="card-body"><div class="card-top"><div><h3>${esc(x.name)}</h3><span class="muted" style="font-size:.82rem">${esc(x.category)}</span></div>${x.featured?'<span class="pill">Unggulan</span>':""}</div><p>${esc(x.description)}</p><div class="price">${money(x.price)}</div><div class="card-actions"><button class="btn small" data-product-detail="${esc(x.id)}">Detail</button><button class="btn secondary small" data-product-order="${esc(x.id)}">Tanya / Pesan</button></div></div></article>`).join("");
+    $("#productEmpty").classList.toggle("hidden",items.length>0);
+  }
+  function renderPortfolio(){
+    const q=$("#portfolioSearch").value.toLowerCase(),cat=$("#portfolioCategory").value;
+    const items=data.portfolio.filter(x=>(!cat||x.category===cat)&&(`${x.title} ${x.category} ${x.description} ${x.role}`.toLowerCase().includes(q)));
+    $("#portfolioGrid").innerHTML=items.map((x,i)=>`<article class="card">${imageVisual({...x,name:x.title,label:x.category},i)}<div class="card-body"><div class="card-top"><div><h3>${esc(x.title)}</h3><span class="muted" style="font-size:.82rem">${esc(x.category)} · ${esc(dateLabel(x.date))}</span></div></div><p>${esc(x.description)}</p><div class="card-actions"><button class="btn secondary small" data-project-detail="${esc(x.id)}">Lihat proyek ↗</button></div></div></article>`).join("");
+    $("#portfolioEmpty").classList.toggle("hidden",items.length>0);
+  }
+  function renderTimeline(){const items=[...data.journey].sort((a,b)=>(a.date||"").localeCompare(b.date||""));$("#timeline").innerHTML=items.length?items.map(x=>`<div class="timeline-item"><small>${esc(dateLabel(x.date))}</small><h3>${esc(x.title)}</h3><p class="muted" style="margin:0">${esc(x.description)}</p></div>`).join(""):'<p class="muted">Perjalanan bisnis akan ditampilkan di sini.</p>';}
+  function renderArticles(){
+    const q=$("#articleSearch").value.toLowerCase(),cat=$("#articleCategory").value;
+    const items=data.articles.filter(x=>x.status==="published"&&(!cat||x.category===cat)&&(`${x.title} ${x.category} ${x.excerpt} ${x.body}`.toLowerCase().includes(q)));
+    $("#articleGrid").innerHTML=items.map((x,i)=>`<article class="card">${imageVisual({...x,name:x.title,label:x.category},i+2)}<div class="card-body"><span class="muted" style="font-size:.8rem">${esc(x.category)} · ${esc(dateLabel(x.date))}</span><h3>${esc(x.title)}</h3><p>${esc(x.excerpt)}</p><div class="card-actions"><button class="btn secondary small" data-article-detail="${esc(x.id)}">Baca artikel ↗</button></div></div></article>`).join("");
+    $("#articleEmpty").classList.toggle("hidden",items.length>0);
+  }
+  function openProduct(id,order=false){const x=data.products.find(y=>y.id===id);if(!x)return;if(order){$("#msgType").value="Pemesanan produk";$("#msgBody").value=`Saya tertarik dengan ${x.name} (${money(x.price)}). Mohon informasi lebih lanjut.`;$("#contact").scrollIntoView({behavior:"smooth"});toast("Formulir kontak disiapkan. Silakan lengkapi nama dan kirim pesan.");return;}
+    showModal(x.name,`${imageVisual(x,1)}<p class="muted" style="margin-top:18px">${esc(x.category)} · ${esc(x.status)}</p><p>${esc(x.description)}</p><h3>${money(x.price)}</h3>${x.featured?'<span class="pill">Produk unggulan</span>':""}`,[{label:"Tanya / Pesan",onClick:()=>{closeModal();openProduct(id,true);}},{label:"Tutup",secondary:true,onClick:closeModal}]);}
+  function openProject(id){const x=data.portfolio.find(y=>y.id===id);if(!x)return;showModal(x.title,`${imageVisual({...x,name:x.title,label:x.category},2)}<p class="muted" style="margin-top:18px">${esc(x.category)} · ${esc(dateLabel(x.date))}</p><p>${esc(x.description)}</p><p><strong>Peran:</strong> ${esc(x.role||"Belum diisi")}</p><p><strong>Hasil / pembelajaran:</strong> ${esc(x.result||"Belum diisi")}</p>${x.link?`<p><a class="btn secondary small" href="${esc(linkFor(x.link))}" target="_blank" rel="noopener">Buka tautan proyek ↗</a></p>`:""}`,[{label:"Tutup",onClick:closeModal}]);}
+  function openArticle(id){const x=data.articles.find(y=>y.id===id);if(!x)return;showModal(x.title,`<p class="muted">${esc(x.category)} · ${esc(dateLabel(x.date))}</p><p><strong>${esc(x.excerpt)}</strong></p><div style="white-space:pre-wrap;line-height:1.8">${esc(x.body)}</div>`,[{label:"Salin judul",secondary:true,onClick:()=>copyText(x.title)},{label:"Tutup",onClick:closeModal}]);}
+  function copyText(t){if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(()=>toast("Teks disalin.","success")).catch(()=>fallbackCopy(t));else fallbackCopy(t);}
+  function fallbackCopy(t){const ta=document.createElement("textarea");ta.value=t;document.body.append(ta);ta.select();try{document.execCommand("copy");toast("Teks disalin.","success");}catch{toast("Tidak dapat menyalin otomatis.","error");}ta.remove();}
+
+  function getUsers(){try{return JSON.parse(localStorage.getItem("mes_demo_users_v1")||"[]");}catch{return [];}}
+  async function hashPassword(password){if(window.crypto&&crypto.subtle){const bytes=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(password));return [...new Uint8Array(bytes)].map(b=>b.toString(16).padStart(2,"0")).join("");}return "demo-"+btoa(unescape(encodeURIComponent(password)));}
+  function renderAuth(){
+    const box=$("#authBox");
+    if(currentUser){setView("admin");return;}
+    box.innerHTML=authMode==="login"?`
+      <div class="eyebrow">Owner access</div><h2>Selamat datang kembali.</h2><p class="muted">Masuk ke area pengelolaan website. Tidak perlu email.</p>
+      <form id="loginForm"><div class="form-group" style="margin-bottom:15px"><label class="field-label" for="loginUser">Username</label><input class="field" id="loginUser" required autocomplete="username" maxlength="40"></div><div class="form-group" style="margin-bottom:15px"><label class="field-label" for="loginPass">Password</label><input class="field" id="loginPass" required type="password" autocomplete="current-password" minlength="8"></div><label class="inline-check"><input type="checkbox" id="showLoginPass"> Tampilkan password</label><button class="btn" style="width:100%;margin-top:20px" type="submit">Masuk ke Dashboard</button></form>
+      <div class="auth-toggle">Belum punya akun? <button class="text-button" id="goRegister">Daftar pemilik</button></div><p class="muted" style="font-size:.8rem;margin-top:20px">Demo lokal: akun tersimpan di browser ini. Pendaftaran tidak memerlukan email. Jangan gunakan password penting.</p>`
+    :`<div class="eyebrow">Create owner account</div><h2>Buat akun pemilik.</h2><p class="muted">Isi username dan password. Email tidak diperlukan.</p>
+      <form id="registerForm"><div class="form-group" style="margin-bottom:15px"><label class="field-label" for="regName">Nama tampilan</label><input class="field" id="regName" required maxlength="80" placeholder="Nama kamu"></div><div class="form-group" style="margin-bottom:15px"><label class="field-label" for="regUser">Username</label><input class="field" id="regUser" required minlength="3" maxlength="30" pattern="[A-Za-z0-9_.-]+" autocomplete="username" placeholder="contoh: pemilikbrand"><small class="muted">Minimal 3 karakter; huruf, angka, titik, garis bawah, atau strip.</small></div><div class="form-group" style="margin-bottom:15px"><label class="field-label" for="regPass">Password</label><input class="field" id="regPass" required type="password" minlength="8" autocomplete="new-password" placeholder="Minimal 8 karakter"></div><div class="form-group" style="margin-bottom:15px"><label class="field-label" for="regConfirm">Konfirmasi password</label><input class="field" id="regConfirm" required type="password" minlength="8" autocomplete="new-password"></div><label class="inline-check"><input type="checkbox" id="showRegPass"> Tampilkan password</label><button class="btn" style="width:100%;margin-top:20px" type="submit">Daftar & Masuk</button></form>
+      <div class="auth-toggle">Sudah punya akun? <button class="text-button" id="goLogin">Masuk</button></div><p class="muted" style="font-size:.8rem;margin-top:20px">Mode demo ini bukan autentikasi produksi. Akun hanya berlaku pada browser yang sama.</p>`;
+    $("#authApp").classList.remove("hidden");
+    $("#goRegister")?.addEventListener("click",()=>{authMode="register";renderAuth();});
+    $("#goLogin")?.addEventListener("click",()=>{authMode="login";renderAuth();});
+    $("#showLoginPass")?.addEventListener("change",e=>$("#loginPass").type=e.target.checked?"text":"password");
+    $("#showRegPass")?.addEventListener("change",e=>{$("#regPass").type=e.target.checked?"text":"password";$("#regConfirm").type=e.target.checked?"text":"password";});
+    $("#loginForm")?.addEventListener("submit",async e=>{e.preventDefault();const username=$("#loginUser").value.trim().toLowerCase(),pass=$("#loginPass").value;const users=getUsers(),hash=await hashPassword(pass),user=users.find(u=>u.username===username&&u.passwordHash===hash);if(!user){toast("Username atau password tidak cocok.","error");return;}currentUser=username;sessionStorage.setItem(SESSION_KEY,currentUser);if(!data.profile.ownerName||data.profile.ownerName==="Nama Pemilik"){data.profile.ownerName=user.displayName;data.profile.initials=user.displayName.split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();saveData();}toast("Berhasil masuk ke dashboard.","success");setView("admin");});
+    $("#registerForm")?.addEventListener("submit",async e=>{e.preventDefault();const displayName=$("#regName").value.trim(),username=$("#regUser").value.trim().toLowerCase(),pass=$("#regPass").value,confirm=$("#regConfirm").value;if(pass!==confirm){toast("Konfirmasi password belum cocok.","error");return;}if(pass.length<8){toast("Password minimal 8 karakter.","error");return;}const users=getUsers();if(users.some(u=>u.username===username)){toast("Username sudah digunakan.","error");return;}if(!/^[a-z0-9_.-]{3,30}$/.test(username)){toast("Format username belum sesuai.","error");return;}const passwordHash=await hashPassword(pass);users.push({username,displayName,passwordHash,createdAt:new Date().toISOString()});try{localStorage.setItem("mes_demo_users_v1",JSON.stringify(users));}catch{toast("Penyimpanan akun gagal.","error");return;}currentUser=username;sessionStorage.setItem(SESSION_KEY,currentUser);if(data.profile.ownerName==="Nama Pemilik"){data.profile.ownerName=displayName;data.profile.initials=displayName.split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();saveData();}toast("Akun dibuat. Kamu langsung masuk ke dashboard.","success");setView("admin");});
+  }
+  function renderAdmin(){
+    if(!currentUser){setView("auth");return;}
+    $$("#adminSidebar button").forEach(b=>b.classList.toggle("active",b.dataset.tab===currentTab));
+    const root=$("#adminContent");
+    if(currentTab==="overview")root.innerHTML=`
+      <div class="admin-grid"><div class="admin-stat"><strong>${data.products.length}</strong><span>Total produk / jasa</span></div><div class="admin-stat"><strong>${data.portfolio.length}</strong><span>Proyek portofolio</span></div><div class="admin-stat"><strong>${data.messages.length}</strong><span>Pesan tersimpan</span></div><div class="admin-stat"><strong>${data.articles.length}</strong><span>Artikel</span></div><div class="admin-stat"><strong>${data.journey.length}</strong><span>Tonggak perjalanan</span></div><div class="admin-stat"><strong>${data.products.filter(x=>x.status==="Tersedia").length}</strong><span>Produk tersedia</span></div></div>
+      <div class="admin-panel"><div class="admin-panel-head"><h3>Selamat datang, ${esc(getUsers().find(u=>u.username===currentUser)?.displayName||currentUser)}</h3><button class="btn small" data-gotab="profile">Lengkapi profil</button></div><p class="muted">Gunakan menu di samping untuk memperbarui identitas brand, katalog, portofolio, cerita perjalanan, artikel, dan pesan masuk.</p><p><strong>Terakhir disimpan:</strong> data tersimpan pada browser ini melalui localStorage.</p></div>
+      <div class="admin-panel"><div class="admin-panel-head"><h3>Aktivitas terbaru</h3></div>${data.messages.length?`<p>${data.messages.length} pesan masuk tersimpan. Buka menu Pesan Masuk untuk melihatnya.</p>`:"<p class='muted'>Belum ada pesan masuk. Pesan dari formulir publik akan muncul di sini pada browser yang sama.</p>"}</div>`;
+    else if(currentTab==="profile")renderProfileAdmin(root);
+    else if(currentTab==="products")renderCollectionAdmin(root,"products");
+    else if(currentTab==="portfolio")renderCollectionAdmin(root,"portfolio");
+    else if(currentTab==="journey")renderCollectionAdmin(root,"journey");
+    else if(currentTab==="articles")renderCollectionAdmin(root,"articles");
+    else if(currentTab==="messages")renderMessagesAdmin(root);
+    else if(currentTab==="settings")renderSettingsAdmin(root);
+    root.querySelectorAll("[data-gotab]").forEach(b=>b.addEventListener("click",()=>{currentTab=b.dataset.gotab;renderAdmin();}));
+  }
+  function renderProfileAdmin(root){
+    const p=data.profile;
+    root.innerHTML=`<div class="admin-panel"><div class="admin-panel-head"><h3>Identitas & Tampilan Website</h3></div><form id="profileForm"><div class="form-grid">
+      ${inputField("Nama website","siteName",p.siteName)}${inputField("Nama brand","brandName",p.brandName)}${inputField("Nama pemilik","ownerName",p.ownerName)}${inputField("Inisial / monogram","initials",p.initials)}${inputField("Tagline hero","tagline",p.tagline,"text","full")}${inputField("Label kecil hero","eyebrow",p.eyebrow,"text","full")}${inputField("Bidang usaha","field",p.field)}${inputField("Lokasi umum","location",p.location)}
+      ${inputField("URL foto profil / sampul","photoUrl",p.photoUrl,"url","full")}${inputField("URL logo (opsional)","logoUrl",p.logoUrl||"","url","full")}
+      ${textareaField("Deskripsi hero","description",p.description)}${textareaField("Bio singkat","bio",p.bio)}${textareaField("Cerita tambahan profil","more",p.more)}${textareaField("Kutipan / prinsip","quote",p.quote)}${textareaField("Keahlian (pisahkan koma)","skills",p.skills)}${textareaField("Fakta / minat (pisahkan koma)","facts",p.facts)}${inputField("Judul cerita usaha","storyTitle",p.storyTitle,"text","full")}${textareaField("Cerita usaha","story",p.story)}${textareaField("Nilai brand (pisahkan koma)","values",p.values)}${inputField("Email kontak (opsional)","email",p.email,"email")}${inputField("Nomor WhatsApp, kode negara tanpa +","phone",p.phone)}${inputField("URL Instagram","instagram",p.instagram,"url")}${inputField("Website eksternal","website",p.website,"url")}${textareaField("Pesan WhatsApp otomatis","whatsappMessage",p.whatsappMessage||"Halo, saya ingin berdiskusi.")}
+      <div class="form-group full"><button class="btn" type="submit">Simpan Identitas</button></div></div></form></div>`;
+    $("#profileForm").addEventListener("submit",e=>{e.preventDefault();const form=new FormData(e.currentTarget);for(const [k,v] of form.entries())p[k]=String(v).trim();p.initials=(p.initials||p.brandName||"M").slice(0,3).toUpperCase();saveData();renderPublic();toast("Identitas website berhasil disimpan.","success");renderAdmin();});
+  }
+  function inputField(label,name,value,type="text",width=""){return `<div class="form-group ${width==="full"?"full":""}"><label class="field-label" for="f_${name}">${esc(label)}</label><input class="field" id="f_${name}" name="${esc(name)}" type="${type}" value="${esc(value||"")}" maxlength="2000"></div>`;}
+  function textareaField(label,name,value){return `<div class="form-group full"><label class="field-label" for="f_${name}">${esc(label)}</label><textarea class="field" id="f_${name}" name="${esc(name)}" maxlength="6000">${esc(value||"")}</textarea></div>`;}
+  const config={
+    products:{title:"Produk & Jasa",singular:"produk",fields:[["name","Nama produk","text",true],["category","Kategori","text",true],["price","Harga (angka rupiah)","number",true],["status","Status","select",true],["description","Deskripsi","textarea",true],["image","URL gambar","url",false],["label","Label gambar","text",false],["featured","Produk unggulan","checkbox",false]],columns:["Nama","Kategori","Harga","Status"],summary:x=>`${x.name} · ${money(x.price)} · ${x.status}`},
+    portfolio:{title:"Portofolio",singular:"proyek",fields:[["title","Judul proyek","text",true],["category","Kategori","text",true],["date","Tanggal","date",false],["description","Deskripsi","textarea",true],["role","Peran dalam proyek","text",false],["result","Hasil / pembelajaran","textarea",false],["image","URL gambar","url",false],["link","Tautan proyek","url",false]],columns:["Judul","Kategori","Tanggal"],summary:x=>`${x.title} · ${x.category} · ${dateLabel(x.date)}`},
+    journey:{title:"Perjalanan Bisnis",singular:"tonggak perjalanan",fields:[["date","Tanggal","date",true],["title","Judul tonggak","text",true],["description","Cerita / pembelajaran","textarea",true]],columns:["Tanggal","Tonggak","Deskripsi"],summary:x=>`${dateLabel(x.date)} · ${x.title}`},
+    articles:{title:"Artikel & Insight",singular:"artikel",fields:[["title","Judul artikel","text",true],["category","Kategori","text",true],["date","Tanggal","date",true],["excerpt","Ringkasan","textarea",true],["body","Isi artikel","textarea",true],["status","Status publikasi","select",true],["image","URL gambar sampul","url",false]],columns:["Judul","Kategori","Status"],summary:x=>`${x.title} · ${x.category} · ${x.status}`}
+  };
+  function renderCollectionAdmin(root,key){
+    const c=config[key],items=data[key];
+    root.innerHTML=`<div class="admin-panel"><div class="admin-panel-head"><h3>Kelola ${c.title}</h3><button class="btn small" id="addItem">+ Tambah ${c.singular}</button></div><div class="toolbar"><input class="field" id="adminSearch" type="search" placeholder="Cari data…"></div><div class="table-wrap"><table><thead><tr>${c.columns.map(x=>`<th>${esc(x)}</th>`).join("")}<th>Aksi</th></tr></thead><tbody id="adminRows"></tbody></table></div><div class="empty hidden" id="adminEmpty">Belum ada data.</div></div>`;
+    const draw=()=>{const q=$("#adminSearch").value.toLowerCase(),filtered=items.filter(x=>JSON.stringify(x).toLowerCase().includes(q));$("#adminRows").innerHTML=filtered.map(x=>`<tr>${c.columns.map(col=>`<td>${esc(key==="products"?(col==="Nama"?x.name:col==="Kategori"?x.category:col==="Harga"?money(x.price):x.status):key==="portfolio"?(col==="Judul"?x.title:col==="Kategori"?x.category:dateLabel(x.date)):key==="journey"?(col==="Tanggal"?dateLabel(x.date):col==="Tonggak"?x.title:x.description):(col==="Judul"?x.title:col==="Kategori"?x.category:x.status))}</td>`).join("")}<td><button class="btn secondary small" data-edit="${esc(x.id)}">Edit</button><button class="btn danger small" data-delete="${esc(x.id)}">Hapus</button></td></tr>`).join("");$("#adminEmpty").classList.toggle("hidden",filtered.length>0);};
+    draw();$("#adminSearch").addEventListener("input",draw);$("#addItem").addEventListener("click",()=>openEditor(key,null,draw));
+    $("#adminRows").addEventListener("click",e=>{const edit=e.target.closest("[data-edit]"),del=e.target.closest("[data-delete]");if(edit)openEditor(key,edit.dataset.edit,draw);if(del){const item=items.find(x=>x.id===del.dataset.delete);if(!item)return;showModal("Hapus data?",`<p>Apakah kamu yakin ingin menghapus <strong>${esc(item.name||item.title)}</strong>? Tindakan ini tidak dapat dibatalkan.</p>`,[{label:"Hapus",secondary:true,onClick:()=>{data[key]=data[key].filter(x=>x.id!==item.id);saveData();closeModal();renderPublic();renderAdmin();toast("Data dihapus.","success");}},{label:"Batal",onClick:closeModal}]);}});
+  }
+  function openEditor(key,id,afterSave){
+    const c=config[key],existing=id?data[key].find(x=>x.id===id):null,item=existing?{...existing}:{id:uid(),status:key==="products"?"Tersedia":key==="articles"?"draft":"",featured:false,date:today(),price:0};
+    const fields=c.fields.map(([name,label,type,required])=>{
+      const val=item[name]??"";
+      if(type==="textarea")return `<div class="form-group full"><label class="field-label" for="edit_${name}">${esc(label)}${required?" *":""}</label><textarea class="field" id="edit_${name}" name="${name}" ${required?"required":""} maxlength="8000">${esc(val)}</textarea></div>`;
+      if(type==="select"){const opts=name==="status"?(key==="products"?["Tersedia","Habis","Tidak aktif"]:["draft","published"]):[];return `<div class="form-group"><label class="field-label" for="edit_${name}">${esc(label)}</label><select class="field" id="edit_${name}" name="${name}" required>${opts.map(o=>`<option value="${esc(o)}" ${val===o?"selected":""}>${esc(o==="published"?"Publikasikan":o==="draft"?"Draft":o)}</option>`).join("")}</select></div>`;}
+      if(type==="checkbox")return `<div class="form-group full"><label class="inline-check"><input type="checkbox" id="edit_${name}" name="${name}" ${val?"checked":""}> ${esc(label)}</label></div>`;
+      return `<div class="form-group ${["description","result","excerpt","body"].includes(name)?"full":""}"><label class="field-label" for="edit_${name}">${esc(label)}${required?" *":""}</label><input class="field" id="edit_${name}" name="${name}" type="${type}" value="${esc(val)}" ${required?"required":""} ${type==="number"?'min="0"':''} maxlength="3000"></div>`;
+    }).join("");
+    showModal((existing?"Edit ":"Tambah ")+c.singular,`<form id="editorForm"><div class="form-grid">${fields}</div><div class="modal-actions"><button type="button" class="btn secondary" id="cancelEditor">Batal</button><button type="submit" class="btn">Simpan</button></div></form>`,[]);
+    $("#cancelEditor").addEventListener("click",closeModal);
+    $("#editorForm").addEventListener("submit",e=>{e.preventDefault();const fd=new FormData(e.currentTarget);for(const [name] of c.fields){const field=$("#edit_"+name);if(field.type==="checkbox")item[name]=field.checked;else if(field.type==="number")item[name]=Math.max(0,Number(field.value)||0);else item[name]=String(fd.get(name)||"").trim();}if(!item.id)item.id=uid();const idx=data[key].findIndex(x=>x.id===item.id);if(idx>=0)data[key][idx]=item;else data[key].unshift(item);saveData();closeModal();renderPublic();renderAdmin();toast("Data berhasil disimpan.","success");});
+  }
+  function renderMessagesAdmin(root){
+    root.innerHTML=`<div class="admin-panel"><div class="admin-panel-head"><h3>Pesan & Permintaan Kerja Sama</h3><span class="pill">${data.messages.length} pesan</span></div><p class="muted">Pesan mode demo hanya tersimpan pada browser yang sama dan tidak otomatis dikirim ke email atau server.</p><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Pengirim</th><th>Kebutuhan</th><th>Aksi</th></tr></thead><tbody>${data.messages.map(m=>`<tr><td>${esc(new Date(m.createdAt).toLocaleString("id-ID"))}</td><td>${esc(m.name)}<br><span class="muted">${esc(m.email||m.phone||"Tanpa kontak")}</span></td><td>${esc(m.type)}</td><td><button class="btn secondary small" data-message="${esc(m.id)}">Baca</button><button class="btn danger small" data-delete-message="${esc(m.id)}">Hapus</button></td></tr>`).join("")}</tbody></table></div>${data.messages.length?"":'<div class="empty">Belum ada pesan yang tersimpan.</div>'}</div>`;
+    root.querySelectorAll("[data-message]").forEach(b=>b.addEventListener("click",()=>{const m=data.messages.find(x=>x.id===b.dataset.message);if(!m)return;showModal("Pesan dari "+m.name,`<p><strong>Tanggal:</strong> ${esc(new Date(m.createdAt).toLocaleString("id-ID"))}</p><p><strong>Jenis:</strong> ${esc(m.type)}</p><p><strong>Organisasi:</strong> ${esc(m.organization||"—")}</p><p><strong>Kontak:</strong> ${esc(m.phone||"—")} · ${esc(m.email||"—")}</p><hr><p style="white-space:pre-wrap">${esc(m.message)}</p>`,[{label:"Tutup",onClick:closeModal}]);}));
+    root.querySelectorAll("[data-delete-message]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.deleteMessage;showModal("Hapus pesan?",`<p>Pesan ini akan dihapus dari penyimpanan lokal.</p>`,[{label:"Hapus",secondary:true,onClick:()=>{data.messages=data.messages.filter(x=>x.id!==id);saveData();closeModal();renderAdmin();toast("Pesan dihapus.","success");}},{label:"Batal",onClick:closeModal}]);}));
+  }
+  function renderSettingsAdmin(root){
+    root.innerHTML=`<div class="admin-panel"><h3>Preferensi Website</h3><p class="muted">Pengaturan ini berlaku untuk browser dan website demo saat ini.</p><div class="form-group" style="margin-bottom:15px"><label class="field-label" for="settingsTheme">Tema</label><select class="field" id="settingsTheme"><option value="light">Terang</option><option value="dark">Gelap</option></select></div><button class="btn" id="saveTheme">Simpan tema</button></div>
+    <div class="admin-panel"><h3>Kelola Data</h3><p class="muted">Ekspor data untuk membuat cadangan. Impor akan mengganti data saat ini; gunakan berkas JSON dari website ini.</p><div style="display:flex;gap:9px;flex-wrap:wrap;margin:15px 0"><button class="btn" id="exportData">Ekspor JSON</button><button class="btn secondary" id="exportCsv">Ekspor produk CSV</button><label class="btn secondary" for="importFile">Impor JSON</label><input id="importFile" class="hidden" type="file" accept=".json,application/json"></div><div class="notice">Data demo tersimpan di localStorage browser. Menghapus data situs pada browser dapat menghilangkannya. Ekspor cadangan secara berkala.</div><button class="btn danger" id="resetData">Reset seluruh konten demo</button></div>
+    <div class="admin-panel"><h3>Akun Pemilik</h3><p class="muted">Username aktif: <strong>${esc(currentUser)}</strong>. Ganti password untuk akun demo di browser ini.</p><form id="changePassForm"><div class="form-grid"><div class="form-group"><label class="field-label" for="oldPass">Password saat ini</label><input class="field" type="password" id="oldPass" required minlength="8"></div><div class="form-group"><label class="field-label" for="newPass">Password baru</label><input class="field" type="password" id="newPass" required minlength="8"></div><div class="form-group full"><label class="field-label" for="newPassConfirm">Konfirmasi password baru</label><input class="field" type="password" id="newPassConfirm" required minlength="8"></div><div class="form-group full"><button class="btn" type="submit">Ubah Password</button></div></div></form></div>
+    <div class="admin-panel"><h3>Catatan untuk penggunaan online</h3><p>Versi satu file ini tidak menyediakan autentikasi server, sinkronisasi lintas perangkat, pengiriman formulir ke email, atau analitik kunjungan yang sebenarnya. Untuk penggunaan publik, hubungkan backend seperti Supabase atau Firebase, terapkan aturan akses database, dan jangan menyimpan rahasia server di file HTML.</p></div>`;
+    $("#settingsTheme").value=document.body.classList.contains("dark")?"dark":"light";
+    $("#saveTheme").onclick=()=>{applyTheme($("#settingsTheme").value);toast("Tema diperbarui.","success");};
+    $("#exportData").onclick=()=>downloadFile("my-entrepreneur-space-backup.json",JSON.stringify(data,null,2),"application/json");
+    $("#exportCsv").onclick=()=>{const rows=[["Nama","Kategori","Harga","Status","Deskripsi"],...data.products.map(x=>[x.name,x.category,x.price,x.status,x.description])];const csv=rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\r\n");downloadFile("produk.csv","\uFEFF"+csv,"text/csv;charset=utf-8;");};
+    $("#importFile").onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const parsed=JSON.parse(await file.text());if(!parsed.profile||!Array.isArray(parsed.products)||!Array.isArray(parsed.portfolio)||!Array.isArray(parsed.journey)||!Array.isArray(parsed.articles)||!Array.isArray(parsed.messages))throw new Error("Struktur tidak sesuai");data=parsed;saveData();renderPublic();renderAdmin();toast("Data berhasil diimpor.","success");}catch(err){toast("Impor gagal. Pilih file JSON cadangan yang valid.","error");}e.target.value="";};
+    $("#resetData").onclick=()=>showModal("Reset seluruh konten?",`<p>Semua profil, produk, portofolio, artikel, perjalanan, dan pesan akan diganti dengan data demo awal. Akun pemilik tidak ikut dihapus.</p>`,[{label:"Reset data",secondary:true,onClick:()=>{data=demoData();saveData();renderPublic();closeModal();renderAdmin();toast("Konten demo direset.","success");}},{label:"Batal",onClick:closeModal}]);
+    $("#changePassForm").onsubmit=async e=>{e.preventDefault();const users=getUsers(),u=users.find(x=>x.username===currentUser);if(!u)return toast("Akun tidak ditemukan.","error");if(await hashPassword($("#oldPass").value)!==u.passwordHash)return toast("Password saat ini salah.","error");const next=$("#newPass").value;if(next!==$("#newPassConfirm").value)return toast("Konfirmasi password baru tidak cocok.","error");if(next.length<8)return toast("Password baru minimal 8 karakter.","error");u.passwordHash=await hashPassword(next);localStorage.setItem("mes_demo_users_v1",JSON.stringify(users));e.target.reset();toast("Password demo berhasil diubah.","success");};
+  }
+  function downloadFile(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+  function applyTheme(theme){document.body.classList.toggle("dark",theme==="dark");localStorage.setItem(THEME_KEY,theme);}
+  function logout(){currentUser="";sessionStorage.removeItem(SESSION_KEY);currentTab="overview";toast("Kamu telah keluar.");setView("public");}
+
+  $("#productSearch").addEventListener("input",renderProducts);$("#productCategory").addEventListener("change",renderProducts);$("#productSort").addEventListener("change",renderProducts);
+  $("#portfolioSearch").addEventListener("input",renderPortfolio);$("#portfolioCategory").addEventListener("change",renderPortfolio);
+  $("#articleSearch").addEventListener("input",renderArticles);$("#articleCategory").addEventListener("change",renderArticles);
+  $("#productGrid").addEventListener("click",e=>{const d=e.target.closest("[data-product-detail]"),o=e.target.closest("[data-product-order]");if(d)openProduct(d.dataset.productDetail);if(o)openProduct(o.dataset.productOrder,true);});
+  $("#portfolioGrid").addEventListener("click",e=>{const b=e.target.closest("[data-project-detail]");if(b)openProject(b.dataset.projectDetail);});
+  $("#articleGrid").addEventListener("click",e=>{const b=e.target.closest("[data-article-detail]");if(b)openArticle(b.dataset.articleDetail);});
+  $("#contactForm").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.currentTarget),msg={id:uid(),name:String(f.get("name")||"").trim(),phone:String(f.get("phone")||"").trim(),email:String(f.get("email")||"").trim(),type:String(f.get("type")||""),organization:String(f.get("organization")||"").trim(),message:String(f.get("message")||"").trim(),createdAt:new Date().toISOString()};if(!msg.name||!msg.type||!msg.message)return toast("Lengkapi kolom wajib terlebih dahulu.","error");data.messages.unshift(msg);if(saveData()){e.currentTarget.reset();toast("Pesan disimpan pada browser ini. Pesan belum dikirim ke server atau email.","success");}});
+  $("#navAdmin").addEventListener("click",()=>{if(currentUser)setView("admin");else{authMode="login";setView("auth");}});
+  $("#footerAdmin").addEventListener("click",()=>{if(currentUser)setView("admin");else{authMode="login";setView("auth");}});
+  $("#backPublic").addEventListener("click",()=>setView("public"));$("#logoutBtn").addEventListener("click",logout);
+  $("#adminSidebar").addEventListener("click",e=>{const b=e.target.closest("[data-tab]");if(!b)return;currentTab=b.dataset.tab;renderAdmin();});
+  $("#themeToggle").addEventListener("click",()=>applyTheme(document.body.classList.contains("dark")?"light":"dark"));
+  $("#menuToggle").addEventListener("click",()=>$("#navLinks").classList.toggle("open"));
+  $("#navLinks").addEventListener("click",e=>{if(e.target.closest("a"))$("#navLinks").classList.remove("open");});
+  $("#modalClose").addEventListener("click",closeModal);$("#modalBackdrop").addEventListener("click",e=>{if(e.target===$("#modalBackdrop"))closeModal();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+  $("#yearNow").textContent=new Date().getFullYear();
+  const savedTheme=localStorage.getItem(THEME_KEY);if(savedTheme)applyTheme(savedTheme);
+  renderPublic();
+  if(currentUser && getUsers().some(u=>u.username===currentUser))setView("admin");else{currentUser="";sessionStorage.removeItem(SESSION_KEY);setView("public");}
+})();
+</script>
+</body>
+</html>
